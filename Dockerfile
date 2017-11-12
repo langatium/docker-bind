@@ -1,11 +1,11 @@
-FROM sameersbn/ubuntu:14.04.20170608
-MAINTAINER sameer@damagehead.com
+FROM resin/rpi-raspbian:latest
+MAINTAINER heinz@langatium.net
 
 ENV BIND_USER=bind \
     BIND_VERSION=1:9.9.5 \
     WEBMIN_VERSION=1.8 \
     DATA_DIR=/data
-
+RUN apt-get update && apt-get install -y wget 
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && wget http://www.webmin.com/jcameron-key.asc -qO - | apt-key add - \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list \
